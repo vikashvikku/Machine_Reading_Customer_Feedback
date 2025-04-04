@@ -22,14 +22,10 @@ from transformers import pipeline
 
 @st.cache_resource
 def load_bert_model():
-    try:
-        sentiment_pipeline = pipeline("text-classification", model="Mahmoud3899/new_distlbert", tokenizer="Mahmoud3899/new_distlbert", framework="pt")
-        return sentiment_pipeline
-    except Exception as e:
-        st.error(f"Error loading model with PyTorch: {e}")
-        return None
+    return pipeline("text-classification", model="priyanshu745/Distilbert", tokenizer="priyanshu745/Distilbert")
 
 sentiment_pipeline = load_bert_model()
+
 
 # 🔹 Load VADER Sentiment Analyzer
 vader = SentimentIntensityAnalyzer()
