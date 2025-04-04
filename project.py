@@ -18,9 +18,16 @@ st.set_page_config(
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # 🔹 Load BERT Model (Cached)
+from transformers import pipeline
+
 @st.cache_resource
 def load_bert_model():
-    return pipeline("text-classification", model="Mahmoud3899/new_distlbert", tokenizer="Mahmoud3899/new_distlbert")
+    try:
+        sentiment_pipeline = pipeline("text-classification", model="Mahmoud3899/new_distlbert", tokenizer="Mahmoud3899/new_distlbert", framework="pt")
+        return sentiment_pipeline
+    except Exception as e:
+        st.error(f"Error loading model with PyTorch: {e}")
+        return None
 
 sentiment_pipeline = load_bert_model()
 
