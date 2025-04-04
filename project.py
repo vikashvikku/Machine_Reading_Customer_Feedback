@@ -20,7 +20,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # 🔹 Load BERT Model (Cached)
 @st.cache_resource
 def load_bert_model():
-    return pipeline("text-classification", model="priyanshu745/Distilbert", tokenizer="priyanshu745/Distilbert")
+    return pipeline("text-classification", model="Mahmoud3899/new_distlbert", tokenizer="Mahmoud3899/new_distlbert")
 
 sentiment_pipeline = load_bert_model()
 
